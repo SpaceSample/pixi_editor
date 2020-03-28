@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import select from './select';
 import add from './add';
+import update from './update';
 
 const initialState = {
   selection: null,
@@ -11,6 +12,7 @@ const DataContext = React.createContext({});
 const reducerMap = {
   select,
   add,
+  update,
 };
 
 // const addReducer = (type, callback) => {

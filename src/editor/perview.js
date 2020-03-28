@@ -31,7 +31,7 @@ const DataNode = ({ data }) => {
 const Perview = () => {
   dataCtxHolder.ctx = useContext(DataContext);
   return (
-    <Stage>
+    <Stage width={540} height={960}>
       <DataNode data={dataCtxHolder.ctx.state.data} />
     </Stage>
   );

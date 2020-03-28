@@ -15,6 +15,10 @@ function checkRequiredAttrs(componentName, attrs){
   checkRequeiredAttrType(attrs, attrDefMap[componentName]);
 }
 
+function getAttrDef(componentName){
+  return attrDefMap[componentName];
+}
+
 const originComponents = { AnimatedSprite, BitmapText, Container, Graphics, NineSlicePlane, ParticleContainer, SimpleMesh, SimpleRope, Sprite, Stage, Text, TilingSprite };
 
 const ComponentMap = {
@@ -38,4 +42,4 @@ const getComponentSymbol = type => {
 };
 
 export default ComponentMap;
-export { getComponentSymbol, checkRequiredAttrs };
+export { getComponentSymbol, checkRequiredAttrs, AttrType, getAttrDef };

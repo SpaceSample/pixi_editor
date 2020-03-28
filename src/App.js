@@ -6,6 +6,7 @@ import Tree from './editor/tree';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { DataContextProvider } from './editor/data_model';
 import EditorToolbar from './editor/toolbar';
+import AttrEditor from './editor/attr_view';
 
 const darkTheme = createMuiTheme({
   palette: {
@@ -15,18 +16,7 @@ const darkTheme = createMuiTheme({
 
 function App() {
   const [data] = useState({
-    id:'root',
-    c:[
-      {
-        id:'a1',
-        t:'Sprite',
-        a:{
-          x:100,
-          y:100,
-          image:"./assets/tank1.png"
-        }
-      }
-    ]
+    id: 'root'
   });
 
   return (
@@ -38,18 +28,20 @@ function App() {
               <EditorToolbar />
             </Grid>
             <Grid container item xs={12} spacing={0}>
-              <Grid item xs={2}>
+              <Grid item xs={3}>
                 <Paper>
                   <Tree></Tree>
                 </Paper>
               </Grid>
-              <Grid item xs={8}>
+              <Grid item xs={6}>
                 <Paper>
-                  <Perview/>
+                  <Perview />
                 </Paper>
               </Grid>
-              <Grid item xs={2}>
-                <Paper>Right</Paper>
+              <Grid item xs={3}>
+                <Paper>
+                  <AttrEditor/>
+                </Paper>
               </Grid>
             </Grid>
             <Grid container item xs={12} spacing={0}>

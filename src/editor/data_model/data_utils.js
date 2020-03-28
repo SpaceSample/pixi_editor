@@ -18,4 +18,8 @@ const findDataNodeByID = (data, id) => {
 
 const newID = () => Date.now() + '';
 
-export { findDataNodeByID, newID };
+const checkID = (data, id) => {
+  return id && !findDataNodeByID(data, id)
+};
+
+export { findDataNodeByID, newID, checkID };
