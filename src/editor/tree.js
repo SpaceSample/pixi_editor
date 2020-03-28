@@ -4,7 +4,7 @@ import TreeItem from '@material-ui/lab/TreeItem';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { getComponentSymbol } from './components';
-import { DataContext } from './data_reducer';
+import { DataContext } from './data_model';
 
 const DataItem = ({ data }) => {
   const { /*state,*/ dispatch } = useContext(DataContext);
@@ -21,12 +21,13 @@ const DataItem = ({ data }) => {
 };
 
 const Tree = ({ data }) => {
+  const { state } = useContext(DataContext);
   return (
     <TreeView
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
     >
-      <DataItem data={data} />
+      <DataItem data={state.data} />
     </TreeView>
   );
 };

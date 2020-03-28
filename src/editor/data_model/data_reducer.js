@@ -1,4 +1,6 @@
 import React, { useReducer } from "react";
+import select from './select';
+import add from './add';
 
 const initialState = {
   selection: null,
@@ -6,13 +8,21 @@ const initialState = {
 };
 const DataContext = React.createContext({});
 
+const reducerMap = {
+  select,
+  add,
+};
+
+// const addReducer = (type, callback) => {
+//   reducerMap[type] = callback;
+// };
+
 const reducer = (state, action) => {
-  switch (action.type) {
-    case 'select':
-      return { ...state, selection: state.selection === action.id ? null : action.id }
-    default:
-      return state;
+  const reducerCallback = reducerMap[action.type];
+  if (reducerCallback) {
+    return reducerCallback(state, action);
   }
+  return state;
 };
 
 const DataContextProvider = props => {

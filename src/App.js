@@ -4,7 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import Perview from './editor/perview';
 import Tree from './editor/tree';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import { DataContextProvider } from './editor/data_reducer';
+import { DataContextProvider } from './editor/data_model';
+import EditorToolbar from './editor/toolbar';
 
 const darkTheme = createMuiTheme({
   palette: {
@@ -31,20 +32,20 @@ function App() {
   return (
     <div className="app">
       <MuiThemeProvider theme={darkTheme}>
-        <DataContextProvider value={0}>
+        <DataContextProvider data={data}>
           <Grid container spacing={0}>
             <Grid container item xs={12} spacing={0}>
-              Header and Tool bar here
+              <EditorToolbar />
             </Grid>
             <Grid container item xs={12} spacing={0}>
               <Grid item xs={2}>
                 <Paper>
-                  <Tree data={data}></Tree>
+                  <Tree></Tree>
                 </Paper>
               </Grid>
               <Grid item xs={8}>
                 <Paper>
-                  <Perview data={data}/>
+                  <Perview/>
                 </Paper>
               </Grid>
               <Grid item xs={2}>
