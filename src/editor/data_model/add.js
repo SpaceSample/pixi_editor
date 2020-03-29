@@ -9,11 +9,12 @@ const add = (state, action) => {
     return state;
   }
   parent.c = parent.c || [];
+  const nid = newID();
   parent.c.push({
-    id: newID(),
+    id: nid,
     t: action.component || 'Container'
   });
-  return { ...state};
+  return { ...state, selection: nid};
 };
 
 export default add;
