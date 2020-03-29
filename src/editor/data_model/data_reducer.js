@@ -2,6 +2,7 @@ import React, { useReducer } from "react";
 import select from './select';
 import add from './add';
 import update from './update';
+import importData from './import_data';
 
 const initialState = {
   selection: null,
@@ -13,6 +14,7 @@ const reducerMap = {
   select,
   add,
   update,
+  importData,
 };
 
 // const addReducer = (type, callback) => {
