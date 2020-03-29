@@ -3,6 +3,7 @@ import { findDataNodeByID, DataContext, checkID } from '../data_model';
 import { AttrType, getAttrDef } from '../components';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import { Checkbox } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   attr_item: {
@@ -23,7 +24,7 @@ const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
           variant="outlined"
           defaultValue={value}
           error={defItem.required && (!value)}
-          onBlur = {onBlur}
+          onBlur={onBlur}
           onChange={onChange}
         />
       </div>
@@ -40,7 +41,7 @@ const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
           variant="outlined"
           defaultValue={value}
           error={(defItem.required && !value && value !== 0) || (!!value && isNaN(Number(value)))}
-          onBlur = {onBlur}
+          onBlur={onBlur}
           onChange={onChange}
         />
       </div>
@@ -58,7 +59,7 @@ const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
           variant="outlined"
           defaultValue={value}
           error={(defItem.required && !value && value !== 0) || (!!value && isNaN(Number(value)))}
-          onBlur = {onBlur}
+          onBlur={onBlur}
           onChange={onChange}
         />
       </div>
@@ -74,9 +75,28 @@ const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
           variant="outlined"
           defaultValue={value}
           error={defItem.required && (!value)}
-          onBlur = {onBlur}
+          onBlur={onBlur}
           onChange={onChange}
         />
+      </div>
+    );
+  }
+  if (defItem.type === AttrType.BOOL) {
+    if (defItem.default !== null && defItem.default !== undefined && value !== true && value !== false) {
+      value = defItem.default;
+    }
+    const onBoolChange = e => {
+      onValueChange(!value)
+    };
+    return (
+      <div className={classes.attr_item}>
+        <Checkbox
+          label={name}
+          checked={value}
+          onChange={onBoolChange}
+          inputProps={{ 'aria-label': 'secondary checkbox' }}
+        />
+        <span>{name}</span>
       </div>
     );
   }
@@ -96,7 +116,7 @@ const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
           variant="outlined"
           defaultValue={JSON.stringify(value)}
           error={defItem.required && (!value)}
-          onBlur = {onBlur}
+          onBlur={onBlur}
           onChange={onObjChange}
         />
       </div>
@@ -106,9 +126,9 @@ const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
 };
 
 const IDEditor = ({ dataID, onUpdate }) => {
-  const[newID, setNewID] = useState(dataID);
+  const [newID, setNewID] = useState(dataID);
   return (
-    <AttrItem key={`id_${dataID}`} name="id" defItem={{ isRequired: true, type: AttrType.STRING }} value={dataID} onValueChange={setNewID} onBlur={() => onUpdate(newID)}/>
+    <AttrItem key={`id_${dataID}`} name="id" defItem={{ isRequired: true, type: AttrType.STRING }} value={dataID} onValueChange={setNewID} onBlur={() => onUpdate(newID)} />
   )
 };
 
@@ -141,7 +161,7 @@ const AttrEditor = () => {
         } else {
           alert("Name cannot be empty or duplicated.");
         }
-      }}/>
+      }} />
       <form>
         {attrItems}
       </form>

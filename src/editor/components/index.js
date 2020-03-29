@@ -12,12 +12,14 @@ const attrDefMap = {
     y: { isRequired: false, type: AttrType.NUMBER },
     scale: { isRequired: false, type: AttrType.POINT },
     angle: { isRequired: false, type: AttrType.NUMBER },
+    visible: { isRequired: false, type: AttrType.BOOL, default: true },
   },
   Container: {
     x: { isRequired: false, type: AttrType.NUMBER },
     y: { isRequired: false, type: AttrType.NUMBER },
     scale: { isRequired: false, type: AttrType.POINT },
     angle: { isRequired: false, type: AttrType.NUMBER },
+    visible: { isRequired: false, type: AttrType.BOOL, default: true },
   },
   Sprite: {
     image: { isRequired: true, type: AttrType.STRING },
@@ -25,6 +27,7 @@ const attrDefMap = {
     y: { isRequired: false, type: AttrType.NUMBER },
     scale: { isRequired: false, type: AttrType.POINT },
     angle: { isRequired: false, type: AttrType.NUMBER },
+    visible: { isRequired: false, type: AttrType.BOOL, default: true },
   },
   Text: {
     text: { isRequired: false, type: AttrType.STRING },
@@ -35,6 +38,7 @@ const attrDefMap = {
     height: { isRequired: false, type: AttrType.NUMBER },
     scale: { isRequired: false, type: AttrType.POINT },
     angle: { isRequired: false, type: AttrType.NUMBER },
+    visible: { isRequired: false, type: AttrType.BOOL, default: true },
   },
 };
 

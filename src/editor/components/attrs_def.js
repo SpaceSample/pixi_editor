@@ -4,6 +4,7 @@ const AttrType = {
   POINT: Symbol(),
   COLOR: Symbol(),
   JSON: Symbol(),
+  BOOL: Symbol(),
 };
 const checkRequeiredAttrType = (attrs, attrDef) => {
   if(!attrDef) {
