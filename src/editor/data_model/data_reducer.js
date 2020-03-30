@@ -3,6 +3,7 @@ import select from './select';
 import add from './add';
 import update from './update';
 import importData from './import_data';
+import deleteNode from './delete_node';
 
 const initialState = {
   selection: null,
@@ -15,6 +16,7 @@ const reducerMap = {
   add,
   update,
   importData,
+  deleteNode,
 };
 
 // const addReducer = (type, callback) => {
