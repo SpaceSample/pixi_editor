@@ -1,4 +1,4 @@
-import { findParentDataNodeByID, newID } from './data_utils';
+import { findParentDataNodeByID } from '../data_utils';
 
 const deleteNode = (state, action) => {
   if (!state.selection) {

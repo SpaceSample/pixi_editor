@@ -1,9 +1,9 @@
 import React, { useReducer } from "react";
-import select from './select';
-import add from './add';
-import update from './update';
-import importData from './import_data';
-import deleteNode from './delete_node';
+import select from './actions/select';
+import add from './actions/add';
+import update from './actions/update';
+import importData from './actions/import_data';
+import deleteNode from './actions/delete_node';
 
 const initialState = {
   selection: null,

@@ -1,4 +1,4 @@
-import { findDataNodeByID } from './data_utils';
+import { findDataNodeByID } from '../data_utils';
 
 const update = (state, action) => {
   const data = findDataNodeByID(state.data, action.id);

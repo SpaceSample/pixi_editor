@@ -1,4 +1,4 @@
-import { findDataNodeByID, newID } from './data_utils';
+import { findDataNodeByID, newID } from '../data_utils';
 
 const add = (state, action) => {
   if (!state.selection) {
