@@ -37,7 +37,7 @@ const sendAssets = (req, res) => {
     if (err) {
       send404(res);
     } else {
-      res.writeHead(200, { 'Content-Type': `${mimeMap[extname]};charset='utf-8'` });
+      res.writeHead(200, { 'Content-Type': `${mimeMap[extname]};charset='utf-8'`, "Cache-Control": "no-cache" });
       res.write(data);
       res.end();
     }
@@ -73,7 +73,7 @@ apiHandlerMap['/api/save'] = (req, res) => {
     if (body){
       const filePath = webDir + layoutFile;
       fs.writeFileSync(filePath, body);
-      res.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
+      res.writeHead(200, {'Content-Type': 'text/html; charset=utf8', "Cache-Control": "no-cache"});
       res.write('success');
     } else {
       res.writeHead(500, {'Content-Type': 'text/html; charset=utf8'});
