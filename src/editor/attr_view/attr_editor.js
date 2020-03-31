@@ -4,12 +4,37 @@ import { AttrType, getAttrDef } from '../components';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { Checkbox } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 const useStyles = makeStyles((theme) => ({
   attr_item: {
     margin: '10px',
   },
 }));
+
+const ContinusHitButton = ({ onHitOnece, text }) => {
+  const [hitStatus, setHitStatus] = useState({ count: 0 });
+  const onPointerDown = () => {
+    onHitOnece(++hitStatus.count);
+    hitStatus.lastTimeSlot = hitStatus.lastTimeSlot ? (hitStatus.lastTimeSlot > 80 ? (hitStatus.lastTimeSlot - 80) : 80) : 320;
+    setHitStatus({ ...hitStatus, timeout: setTimeout(onPointerDown, hitStatus.lastTimeSlot) });
+  };
+  const onPointerUp = () => {
+    console.log('onPointerUp');
+    if (hitStatus.timeout) {
+      clearTimeout(hitStatus.timeout)
+    }
+    setHitStatus({ count: 0 });
+  };
+  return (
+    <Button
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
+      title={text}
+    >{text}</Button>
+  );
+};
 
 const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
   const classes = useStyles();
@@ -28,10 +53,11 @@ const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
           onChange={onChange}
         />
       </div>
-
     );
   }
   if (defItem.type === AttrType.NUMBER) {
+    const reduce = d => onValueChange((value ? value : 0) - d);
+    const increase = d => onValueChange((value ? value : 0) + d);
     return (
       <div className={classes.attr_item}>
         <TextField
@@ -39,13 +65,16 @@ const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
           id={name}
           label={name}
           variant="outlined"
-          defaultValue={value}
+          value={value || defItem.default || 0}
           error={(defItem.required && !value && value !== 0) || (!!value && isNaN(Number(value)))}
           onBlur={onBlur}
           onChange={onChange}
         />
+        <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+          <ContinusHitButton onHitOnece={reduce} text={'➖'} />
+          <ContinusHitButton onHitOnece={increase} text={'➕'} />
+        </ButtonGroup>
       </div>
-
     );
   }
   if (defItem.type === AttrType.POINT) {
@@ -57,7 +86,7 @@ const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
           id={name}
           label={name}
           variant="outlined"
-          defaultValue={value}
+          defaultValue={value || defItem.default || 0}
           error={(defItem.required && !value && value !== 0) || (!!value && isNaN(Number(value)))}
           onBlur={onBlur}
           onChange={onChange}
