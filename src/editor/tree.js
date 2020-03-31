@@ -22,6 +22,10 @@ const DataItem = ({ data }) => {
           dispatch({ type: 'deleteNode' });
         }
       }
+    } else if (e.ctrlKey && (e.keyCode === 38 || e.keyCode === 40)) {
+      dispatch({ type: 'changeOrder', up: e.keyCode === 38 });
+    } else if (e.ctrlKey && (e.keyCode === 37 || e.keyCode === 39)) {
+      dispatch({ type: 'changeLevel', up: e.keyCode === 37 });
     }
   };
   return (

@@ -8,3 +8,10 @@
 ```sh
 yarn start
 ```
+
+## Useage
+
+### Tree View
+ - press "Del" or "Backspace" to delete node
+ - press Ctrl + "⬆️"/"⬇️" to change node order
+ - (TODO) press Ctrl + "⬅️"/"➡️" to change node level 
