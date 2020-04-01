@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { DataContext, readLayoutJson, sendLayoutJson } from '../data_model';
+import { DataContext, readLayoutJson, sendLayoutJson, preloadAllResInData } from '../data_model';
 
 const FileButtonGroup = () => {
   const { state, dispatch } = useContext(DataContext);
-  const reload = () => readLayoutJson(data => dispatch({ type: 'importData', data }))
+  const reload = () => readLayoutJson(data => preloadAllResInData(data, () => dispatch({ type: 'importData', data })));
   useEffect(reload, []);
   return (
     <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">

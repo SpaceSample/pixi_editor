@@ -1,3 +1,5 @@
+import * as PIXI from 'pixi.js';
+
 const findDataNodeByID = (data, id) => {
   if (!data || !data.id) {
     return null;
@@ -40,4 +42,35 @@ const checkID = (data, id) => {
   return id && !findDataNodeByID(data, id)
 };
 
-export { findParentDataNodeByID, findDataNodeByID, newID, checkID };
+const preloadAllResInData = (data, callback) => {
+  const resList = [];
+  const dfsFindRes = d => {
+    if (!d) {
+      return;
+    }
+    if (d.a) {
+      if (d.a.anim) {
+        const [url] = d.a.anim.split(':');
+        if (url.endsWith('.json')) {
+          resList.push(url);
+        }
+      }
+      if (d.a.image) {
+        resList.push(d.a.image);
+      }
+    }
+    if (d.c) {
+      d.c.forEach(dfsFindRes);
+    }
+  }
+  dfsFindRes(data);
+  resList.forEach(res => {
+    PIXI.Loader.shared.add(res);
+  });
+  PIXI.Loader.shared.load(() => {
+    console.log('All resources preload done.');
+    callback && callback();
+  });
+}
+
+export { findParentDataNodeByID, findDataNodeByID, preloadAllResInData, newID, checkID };

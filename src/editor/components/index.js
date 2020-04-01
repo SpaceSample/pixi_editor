@@ -7,7 +7,7 @@ import React from 'react';
 const attrDefMap = {
   AnimatedSprite: {
     anim: { isRequired: true, type: AttrType.STRING },
-    animationSpeed: { isRequired: false, type: AttrType.NUMBER },
+    animationSpeed: { isRequired: false, type: AttrType.NUMBER, default: 1 },
     x: { isRequired: false, type: AttrType.NUMBER },
     y: { isRequired: false, type: AttrType.NUMBER },
     scale: { isRequired: false, type: AttrType.POINT, default: 1 },
@@ -68,7 +68,11 @@ const AnimatedSpriteWrapper = (props) => {
     if (res && res.spritesheet && res.spritesheet.animations) {
       attrs.textures = res.spritesheet.animations[animName];
     } else if (animName) {
-      PIXI.Loader.shared.add(jsonFile).load();
+      try{
+        PIXI.Loader.shared.add(jsonFile).load();
+      } catch(e) {
+        console.log(e);
+      }
     }
   }
   if (attrs.textures) {
