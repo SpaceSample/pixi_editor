@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { findDataNodeByID, DataContext, checkID } from '../data_model';
 import { AttrType, getAttrDef } from '../components';
 import TextField from '@material-ui/core/TextField';
@@ -156,6 +156,7 @@ const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
 
 const IDEditor = ({ dataID, onUpdate }) => {
   const [newID, setNewID] = useState(dataID);
+  useEffect(() => setNewID(dataID), [dataID]);
   return (
     <AttrItem key={`id_${dataID}`} name="id" defItem={{ isRequired: true, type: AttrType.STRING }} value={dataID} onValueChange={setNewID} onBlur={() => onUpdate(newID)} />
   )
