@@ -43,7 +43,6 @@ const checkID = (data, id) => {
 };
 
 const preloadAllResInData = (data, callback) => {
-  const resList = [];
   const dfsFindRes = d => {
     if (!d) {
       return;
@@ -52,21 +51,19 @@ const preloadAllResInData = (data, callback) => {
       if (d.a.anim) {
         const [url] = d.a.anim.split(':');
         if (url.endsWith('.json')) {
-          resList.push(url);
+          PIXI.Loader.shared.add(url);
         }
       }
       if (d.a.image) {
-        resList.push(d.a.image);
+        PIXI.Loader.shared.add(d.a.image);
       }
     }
     if (d.c) {
       d.c.forEach(dfsFindRes);
     }
-  }
+  };
   dfsFindRes(data);
-  resList.forEach(res => {
-    PIXI.Loader.shared.add(res);
-  });
+
   PIXI.Loader.shared.load(() => {
     console.log('All resources preload done.');
     callback && callback();
