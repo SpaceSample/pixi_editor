@@ -6,6 +6,7 @@ import importData from './actions/import_data';
 import deleteNode from './actions/delete_node';
 import changeOrder from './actions/change_order';
 import changeLevel from './actions/change_level';
+import updateMeta from './actions/update_meta';
 
 const initialState = {
   selection: null,
@@ -21,6 +22,7 @@ const reducerMap = {
   deleteNode,
   changeOrder,
   changeLevel,
+  updateMeta,
 };
 
 // const addReducer = (type, callback) => {

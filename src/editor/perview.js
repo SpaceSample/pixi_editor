@@ -11,7 +11,7 @@ const DataNode = ({ data }) => {
     return null;
   }
   const type = data.t || 'Container';
-  if (!checkRequiredAttrs(type, data.a)){
+  if (!checkRequiredAttrs(type, data.a)) {
     return null;
   }
 
@@ -30,10 +30,23 @@ const DataNode = ({ data }) => {
 
 const Perview = () => {
   dataCtxHolder.ctx = useContext(DataContext);
+  const data = dataCtxHolder.ctx.state.data;
+  const meta = data.meta || {};
+  const bgImg = meta.background && meta.background.image;
+  const style = {
+    // backgroundRepeat: 'no-repeat',
+    width: (meta.width || 540)+'px',
+    height: (meta.height || 960)+'px',
+  };
+  if (bgImg) {
+    style.backgroundImage = `url(${bgImg})`;
+  }
   return (
-    <Stage width={540} height={960}>
-      <DataNode data={dataCtxHolder.ctx.state.data} />
-    </Stage>
+    <div style={style}>
+      <Stage width={meta.width || 540} height={meta.height || 960} options={{transparent: true}}>
+        <DataNode data={data} />
+      </Stage>
+    </div>
   );
 };
 

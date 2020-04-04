@@ -154,6 +154,49 @@ const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
   return null;
 };
 
+const MetaEditor = ({ meta, dispatch }) => {
+  return (
+    <div>
+      <hr />
+      <div key='_meta_title'>Meta</div>
+      <form>
+        <AttrItem
+          key={`width`}
+          name={`width`}
+          defItem={{
+            isRequired: false,
+            type: AttrType.NUMBER,
+            default: 540
+          }}
+          value={meta.width}
+          onValueChange={v => dispatch({ type: 'updateMeta', name: 'width', value: Number(v) })}
+        />
+        <AttrItem
+          key={`height`}
+          name={`height`}
+          defItem={{
+            isRequired: false,
+            type: AttrType.NUMBER,
+            default: 960
+          }}
+          value={meta.height}
+          onValueChange={v => dispatch({ type: 'updateMeta', name: 'height', value: Number(v) })}
+        />
+        <AttrItem
+          key={`background.image`}
+          name={`background image`}
+          defItem={{
+            isRequired: false,
+            type: AttrType.STRING
+          }}
+          value={meta.background&&meta.background.image}
+          onValueChange={v => dispatch({ type: 'updateMeta', name: 'background.image', value: v })}
+        />
+      </form>
+    </div>
+  );
+};
+
 const IDEditor = ({ dataID, onUpdate }) => {
   const [newID, setNewID] = useState(dataID);
   useEffect(() => setNewID(dataID), [dataID]);
@@ -179,6 +222,7 @@ const AttrEditor = () => {
       );
     }
   }
+  const isRootNode = state.data.id === state.selection;
   return (
     <div>
       <div key='_title'>Attributes</div>
@@ -195,6 +239,7 @@ const AttrEditor = () => {
       <form>
         {attrItems}
       </form>
+      {isRootNode && data.meta && (<MetaEditor meta={data.meta} dispatch={dispatch}/>)}
     </div>
   );
 };

@@ -34,8 +34,6 @@ const attrDefMap = {
     style: { isRequired: false, type: AttrType.JSON },
     x: { isRequired: false, type: AttrType.NUMBER },
     y: { isRequired: false, type: AttrType.NUMBER },
-    width: { isRequired: false, type: AttrType.NUMBER },
-    height: { isRequired: false, type: AttrType.NUMBER },
     scale: { isRequired: false, type: AttrType.POINT, default: 1 },
     angle: { isRequired: false, type: AttrType.NUMBER },
     visible: { isRequired: false, type: AttrType.BOOL, default: true },

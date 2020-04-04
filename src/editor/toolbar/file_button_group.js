@@ -19,6 +19,15 @@ const FileButtonGroup = () => {
         title={'save'}
         key={'save'}
       >{`💾`}</Button>
+      <Button
+        onClick={() => {
+          const jsonStr = JSON.stringify(state.data, null, 2);
+          console.log(jsonStr);
+          alert(jsonStr);
+        }}
+        title={'JSON perview'}
+        key={'jsonperview'}
+      >{`🔮`}</Button>
     </ButtonGroup>
   );
 };
