@@ -47,7 +47,7 @@ const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
           id={name}
           label={name}
           variant="outlined"
-          defaultValue={value}
+          defaultValue={value || defItem.default }
           error={defItem.required && (!value)}
           onBlur={onBlur}
           onChange={onChange}
@@ -143,7 +143,7 @@ const AttrItem = ({ name, defItem, value, onValueChange, onBlur }) => {
           id={name}
           label={name}
           variant="outlined"
-          defaultValue={JSON.stringify(value)}
+          defaultValue={(value && JSON.stringify(value)) || defItem.default }
           error={defItem.required && (!value)}
           onBlur={onBlur}
           onChange={onObjChange}

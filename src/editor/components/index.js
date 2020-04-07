@@ -12,6 +12,7 @@ const attrDefMap = {
     y: { isRequired: false, type: AttrType.NUMBER },
     scale: { isRequired: false, type: AttrType.POINT, default: 1 },
     angle: { isRequired: false, type: AttrType.NUMBER },
+    anchor: { isRequired: false, type: AttrType.POINT, default: 0 },
     visible: { isRequired: false, type: AttrType.BOOL, default: true },
   },
   Container: {
@@ -19,6 +20,7 @@ const attrDefMap = {
     y: { isRequired: false, type: AttrType.NUMBER },
     scale: { isRequired: false, type: AttrType.POINT, default: 1 },
     angle: { isRequired: false, type: AttrType.NUMBER },
+    anchor: { isRequired: false, type: AttrType.POINT, default: 0 },
     visible: { isRequired: false, type: AttrType.BOOL, default: true },
   },
   Sprite: {
@@ -27,15 +29,17 @@ const attrDefMap = {
     y: { isRequired: false, type: AttrType.NUMBER },
     scale: { isRequired: false, type: AttrType.POINT, default: 1 },
     angle: { isRequired: false, type: AttrType.NUMBER },
+    anchor: { isRequired: false, type: AttrType.POINT, default: 0 },
     visible: { isRequired: false, type: AttrType.BOOL, default: true },
   },
   Text: {
     text: { isRequired: false, type: AttrType.STRING },
-    style: { isRequired: false, type: AttrType.JSON },
+    style: { isRequired: false, type: AttrType.JSON, default: '{"fontFamily":"Arial","fill":"#000000","align":"center","fontSize":"26px"}' },
     x: { isRequired: false, type: AttrType.NUMBER },
     y: { isRequired: false, type: AttrType.NUMBER },
     scale: { isRequired: false, type: AttrType.POINT, default: 1 },
     angle: { isRequired: false, type: AttrType.NUMBER },
+    anchor: { isRequired: false, type: AttrType.POINT, default: 0.5 },
     visible: { isRequired: false, type: AttrType.BOOL, default: true },
   },
 };
@@ -52,9 +56,8 @@ const originComponents = { AnimatedSprite, BitmapText, Container, Graphics, Nine
 
 const TextWrapper = (props) => {
   const attrs = { ...props };
-  if (attrs.style) {
-    attrs.style = new PIXI.TextStyle(attrs.style);
-  }
+  attrs.style = new PIXI.TextStyle(attrs.style || attrDefMap.Text.style.default);
+  attrs.anchor = attrs.anchor || attrDefMap.Text.anchor.default;
   return React.createElement(Text, attrs, props.children);
 };
 
