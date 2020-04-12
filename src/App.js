@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Perview from './editor/perview';
-import Tree from './editor/tree';
+// import Perview from './editor/perview';
+// import Tree from './editor/tree';
+import LeftPanel from './editor/left_panel';
+import CenterPanel from './editor/center_panel';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { DataContextProvider } from './editor/data_model';
 import EditorToolbar from './editor/toolbar';
@@ -29,14 +31,10 @@ function App() {
             </Grid>
             <Grid container item xs={12} spacing={0}>
               <Grid item xs={3}>
-                <Paper>
-                  <Tree></Tree>
-                </Paper>
+                <LeftPanel />
               </Grid>
               <Grid item xs={6}>
-                <Paper>
-                  <Perview />
-                </Paper>
+                <CenterPanel />
               </Grid>
               <Grid item xs={3}>
                 <Paper>

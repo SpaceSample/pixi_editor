@@ -40,7 +40,7 @@ const DataItem = ({ data }) => {
   );
 };
 
-const Tree = ({ data }) => {
+const SpriteTree = ({ data }) => {
   const { state } = useContext(DataContext);
   return (
     <TreeView
@@ -52,4 +52,4 @@ const Tree = ({ data }) => {
   );
 };
 
-export default Tree;
+export default SpriteTree;

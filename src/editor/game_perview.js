@@ -28,7 +28,7 @@ const DataNode = ({ data }) => {
   return React.createElement(Component, data.a, children);
 };
 
-const Perview = () => {
+const GamePerview = () => {
   dataCtxHolder.ctx = useContext(DataContext);
   const data = dataCtxHolder.ctx.state.data;
   const meta = data.meta || {};
@@ -50,4 +50,4 @@ const Perview = () => {
   );
 };
 
-export default Perview;
+export default GamePerview;

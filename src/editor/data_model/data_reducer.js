@@ -7,6 +7,7 @@ import deleteNode from './actions/delete_node';
 import changeOrder from './actions/change_order';
 import changeLevel from './actions/change_level';
 import updateMeta from './actions/update_meta';
+import selectFile from './actions/select_file';
 
 const initialState = {
   selection: null,
@@ -23,6 +24,7 @@ const reducerMap = {
   changeOrder,
   changeLevel,
   updateMeta,
+  selectFile,
 };
 
 // const addReducer = (type, callback) => {
