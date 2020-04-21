@@ -20,7 +20,6 @@ const attrDefMap = {
     y: { isRequired: false, type: AttrType.NUMBER },
     scale: { isRequired: false, type: AttrType.POINT, default: 1 },
     angle: { isRequired: false, type: AttrType.NUMBER },
-    anchor: { isRequired: false, type: AttrType.POINT, default: 0 },
     visible: { isRequired: false, type: AttrType.BOOL, default: true },
   },
   Sprite: {
