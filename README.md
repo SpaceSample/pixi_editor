@@ -3,8 +3,10 @@
 ## Env Setup
  - Node js 12+: See https://nodejs.org/en/
  - Yarn: ```npm install yarn```
+ - Install dependency: ```yarn install```
 
 ## How to run?
+Create a "build" dir and put your "assets" folder in it.
 ```sh
 yarn start
 ```
